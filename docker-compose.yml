@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  main:
+    build:
+      dockerfile: Dockerfile.main
+    ports:
+      - "4000:80"
+    environment:
+      - SERVER_CORS_ALLOW_ORIGINS=http://localhost:4000,http://localhost:4001
+  cdn:
+    build:
+      dockerfile: Dockerfile.cdn
+    ports:
+      - "4001:80"
+    environment:
+      - SERVER_CORS_ALLOW_ORIGINS=http://localhost:4000,http://localhost:4001
