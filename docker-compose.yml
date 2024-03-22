@@ -2,15 +2,23 @@ version: "3.7"
 services:
   main:
     build:
+      context: front
       dockerfile: Dockerfile.main
     ports:
       - "4000:80"
     environment:
-      - SERVER_CORS_ALLOW_ORIGINS=http://localhost:4000,http://localhost:4001
+      - SERVER_CORS_ALLOW_ORIGINS=http://localhost:4000,http://localhost:4001,http://localhost:4002
   cdn:
     build:
+      context: front
       dockerfile: Dockerfile.cdn
     ports:
       - "4001:80"
     environment:
-      - SERVER_CORS_ALLOW_ORIGINS=http://localhost:4000,http://localhost:4001
+      - SERVER_CORS_ALLOW_ORIGINS=http://localhost:4000,http://localhost:4001,http://localhost:4002
+  back:
+    build:
+      context: back
+      dockerfile: Dockerfile
+    ports:
+      - "4002:8080"

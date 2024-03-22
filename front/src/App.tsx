@@ -4,9 +4,11 @@ import "./App.css";
 import { Button } from "@mui/material";
 
 import AddIcon from "@mui/icons-material/Add";
+import { useCounter } from "./use-counter";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const { counter, increment } = useCounter();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -20,11 +22,9 @@ function App() {
           type={"button"}
           variant="contained"
           endIcon={<AddIcon />}
-          onClick={() => {
-            setCounter((c) => c + 1);
-          }}
+          onClick={increment}
         >
-          Create {counter}
+          Create {counter ?? 0}
         </Button>
       </header>
     </div>
