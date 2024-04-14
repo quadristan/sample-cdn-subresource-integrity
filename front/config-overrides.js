@@ -16,8 +16,13 @@ module.exports = function override(config, env) {
   config.plugins.push(
     new CspHtmlWebpackPlugin(
       {
-        "script-src": "",
-        "style-src": "",
+        "script-src": ["'self'", CDN_ORIGIN],
+        "style-src": [
+          "'self'",
+          ...ALLOWED_BACKEND_ORIGINS,
+          CDN_ORIGIN,
+          "'unsafe-inline'", // required for material UI :(
+        ],
         "connect-src": ["'self'", ...ALLOWED_BACKEND_ORIGINS, CDN_ORIGIN], // we allow to fetch() resources from CDN
       },
       {
@@ -27,8 +32,8 @@ module.exports = function override(config, env) {
           "style-src": false,
         },
         hashEnabled: {
-          "script-src": false,
-          "style-src": false,
+          "script-src": true,
+          "style-src": true,
         },
         hashingMethod: "sha384",
       }

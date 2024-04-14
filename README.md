@@ -29,6 +29,7 @@ end
 ## Running the sample
 
 In the sample, the website origin is `http://localhost:4000` and the CDN origin is `http://localhost:4001`.
+For fun, there is also a backend at `http://localhost:4002`
 
 ```bash
 docker compose build && docker compose up

@@ -20,5 +20,7 @@ services:
     build:
       context: back
       dockerfile: Dockerfile
+    environment:
+      - ORIGIN=http://localhost:4000
     ports:
       - "4002:8080"

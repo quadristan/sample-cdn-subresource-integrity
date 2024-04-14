@@ -12,7 +12,7 @@ export const useCounter = () => {
   async function load() {
     try {
       const r = await fetch(BACKEND_GET_METHOD, { method: "GET" });
-      const { counter } = await r.json();
+      const { value: counter } = await r.json();
       setCounter(counter);
     } catch (error) {
       console.log(error);
@@ -27,7 +27,7 @@ export const useCounter = () => {
 
   const increment = useCallback(async () => {
     const r = await fetch(BACKEND_INC_METHOD, { method: "POST" });
-    const { counter } = await r.json();
+    const { value: counter } = await r.json();
     setCounter(counter);
   }, []);
 
